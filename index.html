@@ -5,1000 +5,323 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мобильная Ферма</title>
     <style>
-        body {
-            background-color: #0b1d0b;
-            color: #ffffff;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
             font-size: 13px;
-            margin: 0;
-            padding: 10px;
+        }
+
+        body {
+            background-color: #121212;
+            color: #d1d1d1;
             display: flex;
             justify-content: center;
         }
-        .wap-container {
+
+        .container {
             width: 100%;
             max-width: 420px;
-            background-color: #0a200a;
-            border: 1px solid #1e4a1e;
+            background-color: #0d280c;
+            border: 1px solid #1c4d18;
+            min-height: 100vh;
             padding: 8px;
-            box-sizing: border-box;
-        }
-        
-        a, .btn-link {
-            color: #8ce68c;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        a:hover, .btn-link:hover {
-            text-decoration: underline;
-        }
-        .orange-text { color: #ff9900; }
-        .red-text { color: #ff5555; }
-        .yellow-text { color: #ffff55; }
-        .gray-text { color: #aaaaaa; }
-        .purple-text { color: #c68cff; }
-        
-        .banner-box {
-            background-color: #123d12;
-            border: 1px dashed #286628;
-            padding: 6px;
-            text-align: center;
-            margin-bottom: 6px;
-        }
-        .levelup-box {
-            border: 2px dashed #ffff55;
-            background-color: #1a3d1a;
-            padding: 8px;
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .notice-box {
-            border: 1px solid #800;
-            background-color: #300;
-            color: #ff8888;
-            padding: 6px;
-            margin-bottom: 6px;
-            font-size: 12px;
-        }
-        .resources-bar {
-            background-color: #123312;
-            border: 1px solid #225522;
-            padding: 5px;
-            text-align: center;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-        
-        .plot-item {
-            background-color: #0e2b0e;
-            border-bottom: 1px solid #1a441a;
-            padding: 6px 4px;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-        .plot-icon {
-            width: 36px;
-            height: 36px;
-            background-color: #3d2314;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            border: 1px solid #5a3820;
-            border-radius: 4px;
-            flex-shrink: 0;
-            box-shadow: inset 0 0 5px #1a0f08;
-        }
-        .plot-content {
-            flex-grow: 1;
-        }
-        
-        .menu-block {
-            background-color: #091a09;
-            border: 1px solid #183e18;
-            margin-top: 8px;
-            padding: 4px 8px;
-        }
-        .menu-row {
-            padding: 4px 0;
-            border-bottom: 1px solid #122e12;
-        }
-        .menu-row:last-child { border-bottom: none; }
-        
-        .cat-header {
-            background-color: #143d14;
-            color: #8ce68c;
-            padding: 3px 6px;
-            font-weight: bold;
-            margin-top: 6px;
-            border-left: 3px solid #28a745;
-        }
-        
-        .sub-box {
-            background-color: #051405;
-            border: 1px solid #286628;
-            padding: 6px;
-            margin-top: 6px;
-        }
-        .opt-row {
-            padding: 4px 0;
-            border-bottom: 1px solid #122e12;
-        }
-        
-        input[type="text"], input[type="password"] {
-            background-color: #051405;
-            border: 1px solid #286628;
-            color: #fff;
-            padding: 6px;
-            margin: 4px 0;
-            width: 90%;
-            box-sizing: border-box;
-        }
-        .hidden { display: none !important; }
-
-        .profile-header {
-            background-color: #123d12;
-            padding: 6px;
-            border: 1px solid #286628;
-            margin-bottom: 8px;
         }
 
-        .progress-bar-container {
-            background-color: #051405;
-            border: 1px solid #286628;
-            height: 12px;
-            width: 100%;
-            margin-top: 3px;
-            position: relative;
-        }
-        .progress-bar-fill {
-            background-color: #28a745;
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s;
-        }
-
-        .acc-chip {
-            background-color: #143d14;
-            border: 1px solid #286628;
-            padding: 4px 8px;
-            margin: 3px 0;
+        /* Верхняя панель ресурсов */
+        .header-stats {
+            background-color: #081a07;
+            border: 1px solid #1a4d16;
+            padding: 6px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 8px;
+            color: #4cd964;
+            font-weight: bold;
         }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Системные предупреждения */
+        .warning-box {
+            background-color: #3b0000;
+            border: 1px solid #8b0000;
+            color: #ff4d4d;
+            padding: 6px;
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        /* Блок статусов на грядках */
+        .status-box {
+            background-color: #0a2109;
+            border: 1px solid #1a4e17;
+            padding: 8px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .status-scarecrow {
+            color: #bd93f9;
+            font-weight: bold;
+        }
+
+        /* Список грядок / товаров */
+        .content-box {
+            background-color: #0a2109;
+            border: 1px solid #1a4e17;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+        .item-row {
+            padding: 6px 0;
+            border-bottom: 1px solid #163814;
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Навигационное меню */
+        .nav-menu {
+            background-color: #081a07;
+            border: 1px solid #1a4d16;
+            padding: 6px;
+            margin-top: 10px;
+        }
+
+        .nav-item {
+            display: block;
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 3px 0;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            color: #4cd964;
+        }
+
+        /* Кнопки и ссылки */
+        .btn-link {
+            color: #50fa7b;
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 13px;
+            padding: 0;
+        }
+
+        .btn-link:hover {
+            color: #8be9fd;
+        }
+
+        .scarecrow-desc {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .scarecrow-icon {
+            font-size: 30px;
+        }
+
+        .text-purple { color: #bd93f9; }
+        .text-yellow { color: #f1fa8c; }
+        .text-orange { color: #ffb86c; }
+        .text-green { color: #50fa7b; }
+        
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-<div class="wap-container">
+<div class="container">
 
-    <!-- 1. ЭКРАН АВТОРИЗАЦИИ / РЕГИСТРАЦИИ -->
-    <div id="auth-screen">
-        <div class="banner-box">
-            <b>🌾 АВТОРИЗАЦИЯ НА ФЕРМЕ 🌾</b>
-        </div>
-        
-        <!-- БЛОК БЫСТРОГО ВХОДА (СОХРАНЕННЫЕ АККАУНТЫ) -->
-        <div id="saved-accounts-block" class="menu-block hidden">
-            <div class="menu-row"><b>⚡ Сохраненные аккаунты (вход в 1 клик):</b></div>
-            <div id="saved-accounts-list" style="padding: 4px 0;"></div>
+    <!-- Верхняя инфо-панель -->
+    <div class="header-stats">
+        <div class="stat-item">💰 <span id="coins-display">499'123</span></div>
+        <div class="stat-item">💎 <span id="diamonds-display">10</span></div>
+        <div class="stat-item">⭐ <span id="exp-display">24'597</span></div>
+    </div>
+
+    <!-- Системный плашка -->
+    <div class="warning-box">
+        Если вы не сохранитесь, то Ваш аккаунт удалится через 1 час 15 минут
+    </div>
+
+    <!-- ================= ЭКРАН ГРЯДОК ================= -->
+    <div id="screen-farm">
+        <!-- Блок активных бонусов/эффектов -->
+        <div class="status-box">
+            <div>💨 Ветер: 3 часа 34 минуты</div>
+            <div id="scarecrow-active-status" class="status-scarecrow hidden">
+                👨‍🌾 Пугало на <span id="scarecrow-timer">00 часов 00 минут 00 секунд</span>
+            </div>
+            <div>🌱 Гидропоника: 90% на 5 часов 19 минут</div>
+            <div>⬆️ Компактный вид</div>
+            <div>⚡ Удобрить все</div>
         </div>
 
-        <div class="menu-block">
-            <div class="menu-row"><b>Вход / Регистрация вручную:</b></div>
-            <div style="padding: 6px;">
-                Логин:<br>
-                <input type="text" id="login-username" placeholder="Введите логин" autocomplete="off"><br>
-                Пароль:<br>
-                <input type="password" id="login-password" placeholder="Введите пароль"><br><br>
-                <span class="btn-link" onclick="loginAcc()">[ Войти в аккаунт ]</span><br><br>
-                <span class="btn-link yellow-text" onclick="registerAcc()">[ Зарегистрировать новый ]</span>
+        <!-- Список грядок -->
+        <div class="content-box">
+            <div class="item-row">
+                🌿 <b>Петрушка</b> <span style="color: #888;">(Урожай через 27 минут 47 секунд)</span><br>
+                <button class="btn-link">Применить Торф, выбрать удобрение</button>
+            </div>
+            <div class="item-row">
+                🌿 <b>Петрушка</b> <span style="color: #888;">(Урожай через 27 минут 47 секунд)</span><br>
+                <button class="btn-link">Применить Торф, выбрать удобрение</button>
+            </div>
+            <div class="item-row">
+                🌿 <b>Петрушка</b> <span style="color: #888;">(Урожай через 27 минут 47 секунд)</span><br>
+                <button class="btn-link">Применить Торф, выбрать удобрение</button>
+            </div>
+            <div class="item-row" style="color: #ff79c6;">
+                <b>Новая земля</b><br>
+                <button class="btn-link">Купить за 💎 10 алмазов</button>
             </div>
         </div>
 
-        <div class="menu-block" style="text-align: center; padding: 10px;">
-            <span class="btn-link orange-text" onclick="loginGuest()">👉 Войти как Гость</span>
+        <div class="content-box">
+            <div class="nav-item">🔀 Сменить растение: Петрушка</div>
+            <div class="nav-item">🔀 Сменить удобрение: Торф</div>
+            <div class="nav-item" style="color: #ff5555;">❌ Очистить грядки</div>
         </div>
     </div>
 
-    <!-- 2. ЭКРАН ИГРЫ (ГРЯДКИ) -->
-    <div id="game-screen" class="hidden">
-        <div class="banner-box" id="daily-reward-box">
-            🎁 <span class="btn-link" onclick="claimDailyReward()">Забрать приз за онлайн</span> 🎁
-        </div>
-
-        <div class="resources-bar">
-            🟡 <span id="coins">0</span> &nbsp;&nbsp;&nbsp;&nbsp;
-            💎 <span id="diamonds">0</span>
-        </div>
-
-        <div id="guest-warning" class="notice-box hidden">
-            ⚠️ Вы играете как Гость! Зарегистрируйтесь, чтобы не потерять прогресс.
-        </div>
-
-        <!-- БАННЕР ПОВЫШЕНИЯ УРОВНЯ -->
-        <div id="levelup-banner" class="levelup-box hidden"></div>
-
-        <div style="margin-bottom: 8px; font-size: 12px;">
-            🌤 <b>Облачно</b><br>
-            <!-- БЛОК АКТИВНОЙ ГИДРОПОНИКИ -->
-            <div id="hydro-status-row" class="hidden" style="margin: 2px 0;">
-                🧪 <span class="purple-text"><b>Гидропоника</b> <span id="hydro-info-text">50% на 4 часа 59 минут</span></span>
-            </div>
-            🔄 <span class="btn-link" onclick="updateUI()">Обновить</span>
-        </div>
-
-        <!-- СПИСОК ГРЯДОК -->
-        <div id="plots-list"></div>
-
-        <div class="menu-block">
-            <div class="menu-row">🌱 Активные семена: <b id="current-crop-name" class="yellow-text">Укроп</b></div>
-            <div class="menu-row">❌ <span class="btn-link" onclick="clearPlots()">Очистить свободные грядки</span></div>
-        </div>
-
-        <div class="menu-block">
-            <div class="menu-row">🌱 <b>Грядки (<span id="active-plots-count">0</span>)</b></div>
-            <div class="menu-row">👤 <span class="btn-link yellow-text" onclick="openProfile()">Мой Профиль</span></div>
-            <div class="menu-row">🛒 <span class="btn-link" onclick="openShop()">Магазин</span></div>
-            <div class="menu-row">🚪 <span class="btn-link red-text" onclick="logout()">Сменить аккаунт / Выйти</span></div>
-        </div>
-    </div>
-
-    <!-- 3. ЭКРАН МАГАЗИНА (ГЛАВНЫЙ СПИСОК) -->
-    <div id="shop-screen" class="hidden">
-        <div class="banner-box" id="daily-reward-box-shop">
-            🎁 <span class="btn-link" onclick="claimDailyReward()">Забрать приз за онлайн</span> 🎁
-        </div>
-
-        <div class="resources-bar">
-            🟡 <span id="shop-coins">0</span> &nbsp;&nbsp;&nbsp;&nbsp;
-            💎 <span id="shop-diamonds">0</span>
-        </div>
-
-        <!-- ОБОРУДОВАНИЕ -->
-        <div class="cat-header">Оборудование</div>
-        <div class="menu-block">
-            <div class="menu-row">🧪 <span class="btn-link purple-text" onclick="openItem('hydroponics')">Гидропоника</span></div>
-            <div class="menu-row">🪆 <span class="btn-link" onclick="itemInDev('Пугало')">Пугало</span></div>
-            <div class="menu-row">🌀 <span class="btn-link" onclick="itemInDev('Ветряк')">Ветряк</span></div>
-            <div class="menu-row">🌺 <span class="btn-link" onclick="itemInDev('Клумба')">Клумба</span></div>
-            <div class="menu-row">⚙ <span class="btn-link" onclick="itemInDev('Культиватор')">Культиватор</span></div>
-            <div class="menu-row">🚜 <span class="btn-link" onclick="itemInDev('Сеялка')">Сеялка</span></div>
-            <div class="menu-row">🌾 <span class="btn-link" onclick="itemInDev('Комбайн')">Комбайн</span></div>
-            <div class="menu-row">💧 <span class="btn-link" onclick="itemInDev('Ороситель')">Ороситель</span></div>
-            <div class="menu-row">🧪 <span class="btn-link" onclick="itemInDev('Удобритель')">Удобритель</span></div>
-            <div class="menu-row">📦 <span class="btn-link" onclick="itemInDev('Конвейер')">Конвейер</span></div>
-            <div class="menu-row">🥣 <span class="btn-link" onclick="itemInDev('Кормушка')">Кормушка</span></div>
-            <div class="menu-row">🤖 <span class="btn-link" onclick="itemInDev('Автокормушка')">Автокормушка</span></div>
-            <div class="menu-row">🏗 <span class="btn-link" onclick="itemInDev('Автопогрузчик')">Автопогрузчик</span></div>
-            <div class="menu-row">🐣 <span class="btn-link" onclick="itemInDev('Инкубатор')">Инкубатор</span></div>
-        </div>
-
-        <!-- САДОВНИКИ -->
-        <div class="cat-header">Садовники</div>
-        <div class="menu-block">
-            <div class="menu-row">👨‍🌾 <span class="btn-link" onclick="itemInDev('Молчан')">Молчан</span></div>
-            <div class="menu-row">👨‍🌾 <span class="btn-link" onclick="itemInDev('Казимир')">Казимир</span></div>
-            <div class="menu-row">👨‍🌾 <span class="btn-link" onclick="itemInDev('Ярило')">Ярило</span></div>
-        </div>
-
-        <!-- РАБОТНИКИ -->
-        <div class="cat-header">Работники</div>
-        <div class="menu-block">
-            <div class="menu-row">👷 <span class="btn-link" onclick="itemInDev('Петрович')">Петрович</span></div>
-            <div class="menu-row">👩‍🌾 <span class="btn-link" onclick="itemInDev('Дарья')">Дарья</span></div>
-            <div class="menu-row">👷 <span class="btn-link" onclick="itemInDev('Трофим')">Трофим</span></div>
-            <div class="menu-row">👩‍🌾 <span class="btn-link" onclick="itemInDev('Марфа')">Марфа</span></div>
-        </div>
-
-        <!-- ВЕРТОЛЁТЫ -->
-        <div class="cat-header">Вертолёты</div>
-        <div class="menu-block">
-            <div class="menu-row">🚁 <span class="btn-link" onclick="itemInDev('Шмель')">Шмель</span></div>
-            <div class="menu-row">🚁 <span class="btn-link" onclick="itemInDev('Ястреб')">Ястреб</span></div>
-            <div class="menu-row">🚁 <span class="btn-link" onclick="itemInDev('Дракон')">Дракон</span></div>
-            <div class="menu-row">🚁 <span class="btn-link" onclick="itemInDev('Гром')">Гром</span></div>
-        </div>
-
-        <!-- РАЗНОЕ -->
-        <div class="cat-header">Разное</div>
-        <div class="menu-block">
-            <div class="menu-row">🖼 <span class="btn-link" onclick="itemInDev('Иконки')">Иконки</span></div>
-        </div>
-
-        <!-- СПРАВОЧНИКИ -->
-        <div class="cat-header">Справочники</div>
-        <div class="menu-block">
-            <div class="menu-row">📖 <span class="btn-link" onclick="itemInDev('Справочник: Семена')">Семена</span></div>
-            <div class="menu-row">📖 <span class="btn-link" onclick="itemInDev('Справочник: Удобрения')">Удобрения</span></div>
-            <div class="menu-row">📖 <span class="btn-link" onclick="itemInDev('Справочник: Животные')">Животные</span></div>
-            <div class="menu-row">📖 <span class="btn-link" onclick="itemInDev('Справочник: Личные животные')">Личные животные</span></div>
-            <div class="menu-row">📖 <span class="btn-link" onclick="itemInDev('Справочник: Рыбы')">Рыбы</span></div>
-            <div class="menu-row">📖 <span class="btn-link" onclick="itemInDev('Справочник: Морские монстры')">Морские монстры</span></div>
-        </div>
-
-        <div class="menu-block" style="margin-top: 10px;">
-            <div class="menu-row">🏡 <span class="btn-link yellow-text" onclick="openGame()">Вернуться на Ферму</span></div>
-        </div>
-    </div>
-
-    <!-- 3.1 КАРТОЧКА ТОВАРА: ГИДРОПОНИКА -->
-    <div id="hydroponics-screen" class="hidden">
-        <div class="banner-box" id="daily-reward-box-hydro">
-            🎁 <span class="btn-link" onclick="claimDailyReward()">Забрать приз за онлайн</span> 🎁
-        </div>
-
-        <div class="resources-bar">
-            🟡 <span id="hydro-coins">0</span> &nbsp;&nbsp;&nbsp;&nbsp;
-            💎 <span id="hydro-diamonds">0</span>
-        </div>
-
-        <div class="sub-box">
-            <div style="margin-bottom:6px;">
-                🧪 <b class="purple-text" style="font-size:14px;">Гидропоника</b> — установка для повышения эффективности Полива и Удобрения путем опускания корней растений в минеральный раствор. Гидропоника выдается только в аренду. Максимальная концентрация раствора 400%.
-            </div>
-
-            <div class="yellow-text" style="margin-top:8px;"><b>Эффект:</b></div>
-            <div style="font-size:12px; color:#ddd;">
-                Существенно сокращает время роста растения при поливе и использовании удобрений.<br>
-                А также увеличивает опыт, получаемый во время полива и удобрения.
-            </div>
-
-            <div class="yellow-text" style="margin-top:10px;"><b>Аренда:</b></div>
-            <div class="opt-row">
-                ✔ <span class="btn-link" onclick="rentHydro(5, 50, 5)">Арендовать +50% на +5 часов</span> <span class="gray-text">(цена 💎 5)</span>
-            </div>
-            <div class="opt-row">
-                ✔ <span class="btn-link" onclick="rentHydro(10, 100, 10)">Арендовать +100% на +10 часов</span> <span class="gray-text">(цена 💎 10)</span>
-            </div>
-            <div class="opt-row">
-                ✔ <span class="btn-link" onclick="rentHydro(20, 200, 20)">Арендовать +200% на +20 часов</span> <span class="gray-text">(цена 💎 20)</span>
-            </div>
-            <div class="opt-row">
-                ✔ <span class="btn-link" onclick="rentHydro(30, 300, 30)">Арендовать +300% на +30 часов</span> <span class="gray-text">(цена 💎 30)</span>
-            </div>
-            <div class="opt-row">
-                ✔ <span class="btn-link" onclick="rentHydro(40, 400, 40)">Арендовать +400% на +40 часов</span> <span class="gray-text">(цена 💎 40)</span>
-            </div>
-
-            <div class="yellow-text" style="margin-top:10px;"><b>Примеры:</b></div>
-            <div class="gray-text" style="font-size:11px; line-height:1.3;">
-                1) Если вы используете удобрение Компост с Гидропоникой 300%, то время роста урожая будет сокращено не на 2 часа, а на 8 часов! А также Вы получите 40 опыта вместо 10-ти.<br><br>
-                2) Если у Вас уже есть Гидропоника 200% на 20 часов и Вы покупаете еще Гидропонику 100% на 10 часов, в результате у Вас получится 300% на 30 часов.<br><br>
-                ⚠️ <i>Рекомендуется использовать совместно с Пугалом.</i>
-            </div>
-
-            <div style="margin-top:12px; border-top: 1px solid #1e4a1e; padding-top:6px;">
-                🛒 <span class="btn-link yellow-text" onclick="openShop()">В магазин</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. ЭКРАН ПРОФИЛЯ -->
-    <div id="profile-screen" class="hidden">
-        <div class="menu-row">⬅ <span class="btn-link" onclick="openGame()">Назад на ферму</span></div>
-        
-        <div class="profile-header">
-            👤 <b id="prof-username" class="yellow-text">Игрок</b>, 
-            🎖 <span id="prof-level">1</span> ур. 
-            <span id="prof-status" class="red-text" style="font-size:11px;">[Игрок]</span>
-        </div>
-
-        <div class="menu-block">
-            <div class="menu-row">🎖 <b>Уровень:</b> <span id="prof-level-2">1</span></div>
-            <div class="menu-row">
-                ⭐ <b>Опыт:</b> <span id="prof-exp">0</span> / <span id="prof-next-exp">100</span>
-                <div class="progress-bar-container">
-                    <div id="prof-exp-bar" class="progress-bar-fill"></div>
+    <!-- ================= ЭКРАН МАГАЗИНА ПУГАЛА ================= -->
+    <div id="screen-shop" class="hidden">
+        <div class="content-box">
+            <div class="scarecrow-desc">
+                <div class="scarecrow-icon">👨‍🌾</div>
+                <div>
+                    <span class="text-purple" style="font-weight: bold; font-size: 14px;">Пугало</span> — устройство для отпугивания ворон.
+                    Повышает любой опыт получаемый на грядках и в загонах. Сдается только в аренду.
                 </div>
             </div>
-            <div class="menu-row">🟡 <b>Монеты:</b> <span id="prof-coins">0</span></div>
-            <div class="menu-row">💎 <b>Алмазы:</b> <span id="prof-diamonds">0</span></div>
-            <div class="menu-row gray-text" style="font-size: 11px;">
-                Статус: <span class="yellow-text">В сети</span><br>
-                📅 Дата входа: <span id="prof-reg-date">-</span>
-            </div>
-        </div>
 
-        <div class="menu-block">
-            <div class="menu-row">🏆 <span class="btn-link" onclick="alert('Достижения отсутствуют')">Достижения (0)</span></div>
-            <div class="menu-row">⚙ <span class="btn-link" onclick="alert('Настройки по умолчанию')">Настройки</span></div>
+            <div style="margin-bottom: 8px;">
+                <b class="text-green">Эффект:</b><br>
+                <span>Повышает любой получаемый опыт на 100%.</span>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <b class="text-yellow">Аренда:</b><br>
+                <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(72, 'diamonds', 22)">Арендовать на 3-е суток</button> (цена 💎 22 алмаза)</div>
+                <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(24, 'diamonds', 10)">Арендовать на сутки</button> (цена 💎 10 алмазов)</div>
+                <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(5, 'diamonds', 3)">Арендовать на 5 часов</button> (цена 💎 3 алмаза)</div>
+                <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(1, 'diamonds', 1)">Арендовать на 1 час</button> (цена 💎 1 алмаз)</div>
+                <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(1, 'coins', 1000)">Арендовать на 1 час</button> (цена 💰 1000 монет)</div>
+            </div>
+
+            <div style="font-size: 11px; color: #f1fa8c; margin-bottom: 6px;">
+                ⚠️ Рекомендуется использовать совместно с Гидропоникой.
+            </div>
+            <div style="font-size: 11px; color: #ffb86c; margin-bottom: 10px;">
+                ⚠️ Арендовать Пугало за монеты можно только через 12 часов после окончания предыдущего срока аренды.
+            </div>
+
+            <button class="btn-link" onclick="showScreen('farm')">🛒 В магазин / На грядки</button>
         </div>
+    </div>
+
+    <!-- Главная навигация -->
+    <div class="nav-menu">
+        <div class="nav-item" onclick="showScreen('farm')">🟩 Грядки (4)</div>
+        <div class="nav-item">🏛️ Площадь</div>
+        <div class="nav-item">🪵 Завалинка *</div>
+        <div class="nav-item" onclick="showScreen('shop')">🏪 Магазин (Пугало)</div>
     </div>
 
 </div>
 
 <script>
-    const crops = [
-        { id: 0, name: "Укроп", icon: "🌿", cost: 10, income: 25, time: 10, exp: 5, reqLevel: 1 },
-        { id: 1, name: "Петрушка", icon: "☘️", cost: 20, income: 45, time: 20, exp: 12, reqLevel: 1 },
-        { id: 2, name: "Морковь", icon: "🥕", cost: 50, income: 115, time: 45, exp: 30, reqLevel: 2 },
-        { id: 3, name: "Лук", icon: "🧅", cost: 100, income: 220, time: 90, exp: 75, reqLevel: 3 },
-        { id: 4, name: "Картофель", icon: "🥔", cost: 200, income: 450, time: 180, exp: 150, reqLevel: 4 }
-    ];
+    // Базовое состояние ресурсов
+    let coins = 499123;
+    let diamonds = 10;
+    let scarecrowEndTime = 0; // Timestamp окончания аренды
 
-    const fertilizers = [
-        { id: 0, name: "Торф", cost: 1, timeReduce: 5, exp: 10 },
-        { id: 1, name: "Компост", cost: 2, timeReduce: 15, exp: 25 },
-        { id: 2, name: "Азот", cost: 5, timeReduce: 30, exp: 60 }
-    ];
-
-    let currentUser = null;
-    let isGuest = false;
-    let gameData = null;
-    let selectingCropPlot = null;
-    let selectingFertPlot = null;
-
-    function getExpForNextLevel(lvl) {
-        return lvl * 100;
-    }
-
-    function addExp(amount) {
-        gameData.exp += amount;
-        let nextExp = getExpForNextLevel(gameData.level);
+    // Переключение экранов
+    function showScreen(screen) {
+        document.getElementById('screen-farm').classList.add('hidden');
+        document.getElementById('screen-shop').classList.add('hidden');
         
-        while (gameData.exp >= nextExp) {
-            gameData.exp -= nextExp;
-            gameData.level++;
-            
-            const rewardCoins = 20000 * (gameData.level - 1);
-            gameData.coins += rewardCoins;
-
-            showLevelUpBanner(gameData.level, rewardCoins);
-            nextExp = getExpForNextLevel(gameData.level);
+        if (screen === 'farm') {
+            document.getElementById('screen-farm').classList.remove('hidden');
+        } else if (screen === 'shop') {
+            document.getElementById('screen-shop').classList.remove('hidden');
         }
     }
 
-    function showLevelUpBanner(level, rewardCoins) {
-        const banner = document.getElementById('levelup-banner');
-        if (banner) {
-            banner.innerHTML = `
-                <b class="yellow-text" style="font-size: 15px;">★ LEVEL UP! ★</b><br>
-                Поздравляем! Вы достигли уровня <b>${level}</b>.<br> 
-                Награда: <b class="orange-text">${rewardCoins.toLocaleString()} монет</b> 🟡!
-            `;
-            banner.classList.remove('hidden');
+    // Аренда пугала
+    function rentScarecrow(hours, currency, cost) {
+        if (currency === 'diamonds' && diamonds < cost) {
+            alert("Недостаточно алмазов!");
+            return;
         }
-    }
-
-    function showScreen(id) {
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('game-screen').classList.add('hidden');
-        document.getElementById('shop-screen').classList.add('hidden');
-        document.getElementById('hydroponics-screen').classList.add('hidden');
-        document.getElementById('profile-screen').classList.add('hidden');
-
-        document.getElementById(id).classList.remove('hidden');
-
-        if (id === 'auth-screen') {
-            renderSavedAccountsList();
-        }
-    }
-
-    function getDefaultSave() {
-        return {
-            coins: 500,
-            diamonds: 10,
-            level: 1,
-            exp: 0,
-            lastDailyClaim: 0,
-            regDate: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString().slice(0, 5),
-            selectedCropId: 0,
-            hydroponics: { expireTime: 0, percent: 0 },
-            plots: [
-                { status: 'empty', cropId: null, plantTime: 0 },
-                { status: 'empty', cropId: null, plantTime: 0 },
-                { status: 'empty', cropId: null, plantTime: 0 },
-                { status: 'locked', cost: 15 }
-            ]
-        };
-    }
-
-    function renderSavedAccountsList() {
-        const users = JSON.parse(localStorage.getItem('wap_registered_users') || '{}');
-        const usernames = Object.keys(users);
-        const container = document.getElementById('saved-accounts-list');
-        const block = document.getElementById('saved-accounts-block');
-
-        if (usernames.length === 0) {
-            block.classList.add('hidden');
+        if (currency === 'coins' && coins < cost) {
+            alert("Недостаточно монет!");
             return;
         }
 
-        block.classList.remove('hidden');
-        container.innerHTML = '';
-
-        usernames.forEach(u => {
-            const div = document.createElement('div');
-            div.className = 'acc-chip';
-            div.innerHTML = `
-                <div>👤 <b class="yellow-text">${u}</b></div>
-                <div>
-                    <span class="btn-link" onclick="quickLogin('${u}')">[Войти]</span>
-                    <span class="btn-link red-text" onclick="deleteAcc('${u}')" style="margin-left:8px;">[✖]</span>
-                </div>
-            `;
-            container.appendChild(div);
-        });
-    }
-
-    function quickLogin(u) {
-        currentUser = u;
-        isGuest = false;
-        localStorage.setItem('wap_last_active_user', u);
-        loadUserData();
-        openGame();
-    }
-
-    function deleteAcc(u) {
-        if (!confirm(`Удалить аккаунт ${u}?`)) return;
-        let users = JSON.parse(localStorage.getItem('wap_registered_users') || '{}');
-        delete users[u];
-        localStorage.setItem('wap_registered_users', JSON.stringify(users));
-        localStorage.removeItem('wap_save_' + u);
-
-        if (localStorage.getItem('wap_last_active_user') === u) {
-            localStorage.removeItem('wap_last_active_user');
-        }
-
-        renderSavedAccountsList();
-    }
-
-    function loginGuest() {
-        const randId = Math.floor(1000 + Math.random() * 9000);
-        currentUser = "Гость_" + randId;
-        isGuest = true;
-        localStorage.setItem('wap_last_active_user', currentUser);
-        loadUserData();
-        openGame();
-    }
-
-    function registerAcc() {
-        const u = document.getElementById('login-username').value.trim();
-        const p = document.getElementById('login-password').value.trim();
-
-        if (!u || !p) { alert('Заполните логин и пароль!'); return; }
-        
-        let users = JSON.parse(localStorage.getItem('wap_registered_users') || '{}');
-        if (users[u]) {
-            alert('Пользователь с таким логином уже существует!');
-            return;
-        }
-
-        users[u] = p;
-        localStorage.setItem('wap_registered_users', JSON.stringify(users));
-        currentUser = u;
-        isGuest = false;
-        localStorage.setItem('wap_last_active_user', u);
-        loadUserData();
-        alert('Регистрация успешна!');
-        openGame();
-    }
-
-    function loginAcc() {
-        const u = document.getElementById('login-username').value.trim();
-        const p = document.getElementById('login-password').value.trim();
-
-        if (!u || !p) { alert('Введите логин и пароль!'); return; }
-
-        let users = JSON.parse(localStorage.getItem('wap_registered_users') || '{}');
-        if (users[u] && users[u] === p) {
-            currentUser = u;
-            isGuest = false;
-            localStorage.setItem('wap_last_active_user', u);
-            loadUserData();
-            openGame();
+        // Списание средств
+        if (currency === 'diamonds') {
+            diamonds -= cost;
+            document.getElementById('diamonds-display').innerText = diamonds;
         } else {
-            alert('Неверный логин или пароль!');
+            coins -= cost;
+            document.getElementById('coins-display').innerText = coins;
         }
-    }
 
-    function logout() {
-        saveGame();
-        localStorage.removeItem('wap_last_active_user');
-        currentUser = null;
-        isGuest = false;
-        gameData = null;
-        document.getElementById('login-username').value = '';
-        document.getElementById('login-password').value = '';
-        document.getElementById('levelup-banner').classList.add('hidden');
-        showScreen('auth-screen');
-    }
-
-    function loadUserData() {
-        let saved = localStorage.getItem('wap_save_' + currentUser);
-        if (saved) {
-            try { 
-                gameData = JSON.parse(saved); 
-                if (!gameData.hydroponics) gameData.hydroponics = { expireTime: 0, percent: 0 };
-                if (!gameData.lastDailyClaim) gameData.lastDailyClaim = 0;
-            } catch(e) { 
-                gameData = getDefaultSave(); 
-            }
-        } else {
-            gameData = getDefaultSave();
-        }
-        saveGame();
-    }
-
-    function saveGame() {
-        if (currentUser && gameData) {
-            localStorage.setItem('wap_save_' + currentUser, JSON.stringify(gameData));
-        }
-    }
-
-    function openGame() {
-        showScreen('game-screen');
-        const warnBox = document.getElementById('guest-warning');
-        if (isGuest) {
-            warnBox.classList.remove('hidden');
-        } else {
-            warnBox.classList.add('hidden');
-        }
-        updateUI();
-    }
-
-    function openShop() {
-        showScreen('shop-screen');
-        updateUI();
-    }
-
-    function openItem(itemName) {
-        if (itemName === 'hydroponics') {
-            showScreen('hydroponics-screen');
-            updateUI();
-        }
-    }
-
-    function itemInDev(name) {
-        alert('Раздел "' + name + '" пока в разработке!');
-    }
-
-    function rentHydro(diamondsCost, percent, hours) {
-        if (gameData.diamonds >= diamondsCost) {
-            gameData.diamonds -= diamondsCost;
-            
-            const now = Date.now();
-            const addTime = hours * 3600 * 1000;
-
-            if (gameData.hydroponics.expireTime > now) {
-                gameData.hydroponics.expireTime += addTime;
-                gameData.hydroponics.percent = Math.min(400, gameData.hydroponics.percent + percent);
-            } else {
-                gameData.hydroponics.expireTime = now + addTime;
-                gameData.hydroponics.percent = percent;
-            }
-
-            saveGame();
-            updateUI();
-            alert(`✅ Вы успешно арендовали Гидропонику +${percent}% на ${hours} ч.!`);
-        } else {
-            alert('Недостаточно алмазов 💎!');
-        }
-    }
-
-    function openProfile() {
-        showScreen('profile-screen');
-        const nextExp = getExpForNextLevel(gameData.level);
-        const expPct = Math.min(100, Math.floor((gameData.exp / nextExp) * 100));
-
-        document.getElementById('prof-username').innerText = currentUser;
-        document.getElementById('prof-level').innerText = gameData.level;
-        document.getElementById('prof-level-2').innerText = gameData.level;
-        document.getElementById('prof-exp').innerText = gameData.exp;
-        document.getElementById('prof-next-exp').innerText = nextExp;
-        document.getElementById('prof-exp-bar').style.width = expPct + '%';
-        document.getElementById('prof-coins').innerText = gameData.coins.toLocaleString();
-        document.getElementById('prof-diamonds').innerText = gameData.diamonds.toLocaleString();
-        document.getElementById('prof-reg-date').innerText = gameData.regDate || "Сегодня";
-        document.getElementById('prof-status').innerText = isGuest ? "[Гость]" : "[Игрок]";
-    }
-
-    function formatTimeLeft(ms) {
-        if (ms <= 0) return "";
-        let totalSec = Math.floor(ms / 1000);
-        let h = Math.floor(totalSec / 3600);
-        let m = Math.floor((totalSec % 3600) / 60);
-        let s = totalSec % 60;
-        
-        let res = "";
-        if (h > 0) res += h + " ч. ";
-        if (m > 0 || h > 0) res += m + " мин. ";
-        res += s + " сек.";
-        return res;
-    }
-
-    function updateUI() {
-        if (!gameData) return;
-
-        // Синхронизация монет и алмазов
-        const cStr = gameData.coins.toLocaleString();
-        const dStr = gameData.diamonds.toLocaleString();
-
-        document.getElementById('coins').innerText = cStr;
-        document.getElementById('diamonds').innerText = dStr;
-        document.getElementById('shop-coins').innerText = cStr;
-        document.getElementById('shop-diamonds').innerText = dStr;
-        document.getElementById('hydro-coins').innerText = cStr;
-        document.getElementById('hydro-diamonds').innerText = dStr;
-
-        // Обновление баннера ежедневной награды
+        // Добавление времени аренды
         const now = Date.now();
-        const cd = 24 * 3600 * 1000;
-        const rewardBoxes = [
-            document.getElementById('daily-reward-box'),
-            document.getElementById('daily-reward-box-shop'),
-            document.getElementById('daily-reward-box-hydro')
-        ];
+        const addTimeMs = hours * 3600 * 1000;
 
-        let rewardText = "";
-        if (now - gameData.lastDailyClaim >= cd) {
-            rewardText = `🎁 <span class="btn-link" onclick="claimDailyReward()">Забрать приз за онлайн</span> 🎁`;
+        if (scarecrowEndTime > now) {
+            scarecrowEndTime += addTimeMs;
         } else {
-            const leftMs = cd - (now - gameData.lastDailyClaim);
-            rewardText = `⏳ <span class="gray-text">Приз за онлайн доступен через ${formatTimeLeft(leftMs)}</span>`;
+            scarecrowEndTime = now + addTimeMs;
         }
 
-        rewardBoxes.forEach(box => {
-            if (box) box.innerHTML = rewardText;
-        });
-
-        // Обновление отображения активности Гидропоники
-        const hydroRow = document.getElementById('hydro-status-row');
-        const hydroText = document.getElementById('hydro-info-text');
-
-        if (gameData.hydroponics && gameData.hydroponics.expireTime > now) {
-            const timeLeft = gameData.hydroponics.expireTime - now;
-            hydroText.innerText = `${gameData.hydroponics.percent}% на ${formatTimeLeft(timeLeft)}`;
-            hydroRow.classList.remove('hidden');
-        } else {
-            hydroRow.classList.add('hidden');
-        }
-
-        const selCrop = crops[gameData.selectedCropId] || crops[0];
-        document.getElementById('current-crop-name').innerText = selCrop.name;
-
-        const activePlots = gameData.plots.filter(p => p.status !== 'locked').length;
-        document.getElementById('active-plots-count').innerText = activePlots;
-
-        const container = document.getElementById('plots-list');
-        container.innerHTML = '';
-
-        gameData.plots.forEach((plot, index) => {
-            const div = document.createElement('div');
-            div.className = 'plot-item';
-
-            if (plot.status === 'locked') {
-                div.innerHTML = `
-                    <div class="plot-icon" style="background-color:#1c130d;">🔒</div>
-                    <div class="plot-content">
-                        <span class="yellow-text">Закрытая грядка</span><br>
-                        💎 <span class="btn-link" onclick="buyPlot(${index})">Разблокировать за ${plot.cost} алмазов</span>
-                    </div>
-                `;
-            } else if (plot.status === 'empty') {
-                let subHtml = '';
-                if (selectingCropPlot === index) {
-                    subHtml = `<div class="sub-box"><b>Выберите семена:</b><br>`;
-                    crops.forEach(c => {
-                        const canPlant = gameData.level >= c.reqLevel;
-                        if (canPlant) {
-                            subHtml += `
-                                <div class="opt-row">
-                                    ${c.icon} <span class="btn-link" onclick="plantCrop(${index}, ${c.id})">${c.name}</span> 
-                                    <span class="gray-text">(${c.cost} монет | ${c.time}сек | +${c.exp} XP)</span>
-                                </div>`;
-                        } else {
-                            subHtml += `
-                                <div class="opt-row gray-text">
-                                    🔒 ${c.name} <span class="red-text">(нужен ${c.reqLevel} ур.)</span>
-                                </div>`;
-                        }
-                    });
-                    subHtml += `<div style="margin-top:4px;"><span class="btn-link red-text" onclick="toggleSelectCrop(${index})">[Отмена]</span></div></div>`;
-                }
-
-                div.innerHTML = `
-                    <div class="plot-icon" title="Земля">🟫</div>
-                    <div class="plot-content">
-                        <span class="yellow-text">Земля готова к посеву</span><br>
-                        🌱 <span class="btn-link" onclick="toggleSelectCrop(${index})">Посадить...</span>
-                        ${subHtml}
-                    </div>
-                `;
-            } else if (plot.status === 'growing') {
-                const crop = crops[plot.cropId] || crops[0];
-                const timeLeft = Math.max(0, Math.ceil((plot.plantTime + crop.time * 1000 - Date.now()) / 1000));
-
-                let fertHtml = '';
-                if (selectingFertPlot === index) {
-                    fertHtml = `<div class="sub-box"><b>Выберите удобрение:</b><br>`;
-                    fertilizers.forEach(f => {
-                        fertHtml += `
-                            <div class="opt-row">
-                                🧪 <span class="btn-link" onclick="applyFertilizer(${index}, ${f.id})">${f.name}</span> 
-                                <span class="gray-text">(-${f.timeReduce}сек | 💎${f.cost})</span>
-                            </div>`;
-                    });
-                    fertHtml += `<div style="margin-top:4px;"><span class="btn-link red-text" onclick="toggleSelectFert(${index})">[Отмена]</span></div></div>`;
-                }
-
-                if (timeLeft > 0) {
-                    div.innerHTML = `
-                        <div class="plot-icon">🌱</div>
-                        <div class="plot-content">
-                            <b>${crop.name}</b> <span class="gray-text">(Рост: ${timeLeft} сек)</span><br>
-                            🧪 <span class="btn-link" onclick="toggleSelectFert(${index})">Удобрить</span>
-                            ${fertHtml}
-                        </div>
-                    `;
-                } else {
-                    plot.status = 'ready';
-                    saveGame();
-                    updateUI();
-                    return;
-                }
-            } else if (plot.status === 'ready') {
-                const crop = crops[plot.cropId] || crops[0];
-                div.innerHTML = `
-                    <div class="plot-icon">${crop.icon}</div>
-                    <div class="plot-content">
-                        <b class="yellow-text">${crop.name} созрел!</b><br>
-                        🟡 <span class="btn-link orange-text" onclick="harvest(${index})">Собрать (+${crop.income} монет, +${crop.exp} XP)</span>
-                    </div>
-                `;
-            }
-            container.appendChild(div);
-        });
+        alert(`Пугало успешно арендовано на ${hours} ч.!`);
+        showScreen('farm');
+        updateTimer();
     }
 
-    function toggleSelectCrop(index) {
-        selectingCropPlot = (selectingCropPlot === index) ? null : index;
-        selectingFertPlot = null;
-        updateUI();
-    }
-
-    function toggleSelectFert(index) {
-        selectingFertPlot = (selectingFertPlot === index) ? null : index;
-        selectingCropPlot = null;
-        updateUI();
-    }
-
-    function plantCrop(plotIndex, cropId) {
-        const crop = crops[cropId];
-        if (gameData.level < crop.reqLevel) {
-            alert(`Для посадки ${crop.name} нужен ${crop.reqLevel} уровень!`);
-            return;
-        }
-        if (gameData.coins >= crop.cost) {
-            gameData.coins -= crop.cost;
-            gameData.selectedCropId = cropId;
-            gameData.plots[plotIndex].status = 'growing';
-            gameData.plots[plotIndex].cropId = cropId;
-            gameData.plots[plotIndex].plantTime = Date.now();
-            selectingCropPlot = null;
-            saveGame();
-            updateUI();
-        } else {
-            alert('Недостаточно монет!');
-        }
-    }
-
-    function applyFertilizer(plotIndex, fertId) {
-        const fert = fertilizers.find(f => f.id === fertId);
-        if (gameData.diamonds >= fert.cost) {
-            gameData.diamonds -= fert.cost;
-
-            let timeBonusMultiplier = 1;
-            let expBonusMultiplier = 1;
-
-            if (gameData.hydroponics && gameData.hydroponics.expireTime > Date.now()) {
-                const hydroMult = gameData.hydroponics.percent / 100;
-                timeBonusMultiplier += hydroMult; 
-                expBonusMultiplier += hydroMult;
-            }
-
-            const actualTimeReduce = fert.timeReduce * timeBonusMultiplier;
-            const actualExpGain = Math.round(fert.exp * expBonusMultiplier);
-
-            addExp(actualExpGain);
-            gameData.plots[plotIndex].plantTime -= actualTimeReduce * 1000;
-            selectingFertPlot = null;
-            saveGame();
-            updateUI();
-        } else {
-            alert('Недостаточно алмазов!');
-        }
-    }
-
-    function harvest(index) {
-        const plot = gameData.plots[index];
-        const crop = crops[plot.cropId] || crops[0];
-        gameData.coins += crop.income;
-        addExp(crop.exp);
-        plot.status = 'empty';
-        plot.cropId = null;
-        saveGame();
-        updateUI();
-    }
-
-    function buyPlot(index) {
-        if (gameData.diamonds >= gameData.plots[index].cost) {
-            gameData.diamonds -= gameData.plots[index].cost;
-            gameData.plots[index].status = 'empty';
-            saveGame();
-            updateUI();
-        } else {
-            alert('Недостаточно алмазов!');
-        }
-    }
-
-    function clearPlots() {
-        let count = 0;
-        gameData.plots.forEach(p => {
-            if (p.status === 'ready' || p.status === 'growing') {
-                count++;
-            }
-        });
-        if (count > 0 && !confirm('На грядках есть растущие или готовые культуры. Все равно очистить?')) {
-            return;
-        }
-        gameData.plots.forEach(p => {
-            if (p.status !== 'locked') {
-                p.status = 'empty';
-                p.cropId = null;
-            }
-        });
-        saveGame();
-        updateUI();
-    }
-
-    function claimDailyReward() {
+    // Обновление таймера
+    function updateTimer() {
         const now = Date.now();
-        const cd = 24 * 3600 * 1000;
+        const diff = scarecrowEndTime - now;
 
-        if (now - gameData.lastDailyClaim < cd) {
-            alert('⚠️ Вы уже забирали приз за онлайн! Приходите позже.');
-            return;
+        const statusElement = document.getElementById('scarecrow-active-status');
+
+        if (diff > 0) {
+            statusElement.classList.remove('hidden');
+
+            const totalSeconds = Math.floor(diff / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById('scarecrow-timer').innerText = 
+                `${hours} часов ${minutes} минут ${seconds} секунд`;
+        } else {
+            statusElement.classList.add('hidden');
         }
-
-        gameData.coins += 100;
-        gameData.diamonds += 2;
-        gameData.lastDailyClaim = now;
-        addExp(10);
-        saveGame();
-        updateUI();
-        alert('🎁 Вы получили 100 монет, 2 алмаза и 10 опыта!');
     }
 
-    setInterval(() => {
-        if (!currentUser || !gameData) return;
-        const authScreen = document.getElementById('auth-screen');
-        if (authScreen.classList.contains('hidden')) {
-            updateUI();
-        }
-    }, 1000);
-
-    document.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !document.getElementById('auth-screen').classList.contains('hidden')) {
-            loginAcc();
-        }
-    });
-
-    // ИНИЦИАЛИЗАЦИЯ И АВТОВХОД ПРИ ЗАГРУЗКЕ
-    window.onload = function() {
-        const lastUser = localStorage.getItem('wap_last_active_user');
-        if (lastUser) {
-            currentUser = lastUser;
-            isGuest = lastUser.startsWith("Гость_");
-            loadUserData();
-            openGame();
-        } else {
-            showScreen('auth-screen');
-        }
-    };
+    // Запуск таймера каждую секунду
+    setInterval(updateTimer, 1000);
 </script>
 
 </body>
