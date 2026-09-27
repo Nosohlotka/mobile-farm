@@ -48,7 +48,7 @@
             gap: 4px;
         }
 
-        /* Системные предупреждения */
+        /* Системная плашка предупреждения */
         .warning-box {
             background-color: #3b0000;
             border: 1px solid #8b0000;
@@ -73,7 +73,7 @@
             font-weight: bold;
         }
 
-        /* Список грядок / товаров */
+        /* Контейнеры с контентом */
         .content-box {
             background-color: #0a2109;
             border: 1px solid #1a4e17;
@@ -90,7 +90,7 @@
             border-bottom: none;
         }
 
-        /* Навигационное меню */
+        /* Меню навигации */
         .nav-menu {
             background-color: #081a07;
             border: 1px solid #1a4d16;
@@ -110,7 +110,7 @@
             color: #4cd964;
         }
 
-        /* Кнопки и ссылки */
+        /* Кнопки и интерактив */
         .btn-link {
             color: #50fa7b;
             text-decoration: underline;
@@ -119,6 +119,7 @@
             border: none;
             font-size: 13px;
             padding: 0;
+            text-align: left;
         }
 
         .btn-link:hover {
@@ -140,40 +141,42 @@
         .text-orange { color: #ffb86c; }
         .text-green { color: #50fa7b; }
         
-        .hidden { display: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
 <div class="container">
 
-    <!-- Верхняя инфо-панель -->
+    <!-- Панель ресурсов -->
     <div class="header-stats">
         <div class="stat-item">💰 <span id="coins-display">499'123</span></div>
         <div class="stat-item">💎 <span id="diamonds-display">10</span></div>
         <div class="stat-item">⭐ <span id="exp-display">24'597</span></div>
     </div>
 
-    <!-- Системный плашка -->
+    <!-- Системное плашка -->
     <div class="warning-box">
         Если вы не сохранитесь, то Ваш аккаунт удалится через 1 час 15 минут
     </div>
 
-    <!-- ================= ЭКРАН ГРЯДОК ================= -->
+    <!-- ================= 1. ЭКРАН ГРЯДОК ================= -->
     <div id="screen-farm">
-        <!-- Блок активных бонусов/эффектов -->
         <div class="status-box">
-            <div>💨 Ветер: 3 часа 34 минуты</div>
+            <div>💨 Ветер 3 часа 34 минуты</div>
             <div id="scarecrow-active-status" class="status-scarecrow hidden">
-                👨‍🌾 Пугало на <span id="scarecrow-timer">00 часов 00 минут 00 секунд</span>
+                📍 Пугало на <span id="scarecrow-timer">00 минут 00 секунд</span>
             </div>
-            <div>🌱 Гидропоника: 90% на 5 часов 19 минут</div>
+            <div>🌱 Гидропоника 90% на 5 часов 19 минут</div>
             <div>⬆️ Компактный вид</div>
             <div>⚡ Удобрить все</div>
         </div>
 
-        <!-- Список грядок -->
         <div class="content-box">
+            <div class="item-row">
+                🌿 <b>Петрушка</b> <span style="color: #888;">(Урожай через 27 минут 47 секунд)</span><br>
+                <button class="btn-link">Применить Торф, выбрать удобрение</button>
+            </div>
             <div class="item-row">
                 🌿 <b>Петрушка</b> <span style="color: #888;">(Урожай через 27 минут 47 секунд)</span><br>
                 <button class="btn-link">Применить Торф, выбрать удобрение</button>
@@ -199,7 +202,7 @@
         </div>
     </div>
 
-    <!-- ================= ЭКРАН МАГАЗИНА ПУГАЛА ================= -->
+    <!-- ================= 2. ЭКРАН МАГАЗИНА / ПУГАЛО ================= -->
     <div id="screen-shop" class="hidden">
         <div class="content-box">
             <div class="scarecrow-desc">
@@ -210,13 +213,13 @@
                 </div>
             </div>
 
-            <div style="margin-bottom: 8px;">
-                <b class="text-green">Эффект:</b><br>
+            <div style="margin-bottom: 10px;">
+                <b class="text-green">Эффект</b><br>
                 <span>Повышает любой получаемый опыт на 100%.</span>
             </div>
 
             <div style="margin-bottom: 10px;">
-                <b class="text-yellow">Аренда:</b><br>
+                <b class="text-yellow">Аренда</b><br>
                 <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(72, 'diamonds', 22)">Арендовать на 3-е суток</button> (цена 💎 22 алмаза)</div>
                 <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(24, 'diamonds', 10)">Арендовать на сутки</button> (цена 💎 10 алмазов)</div>
                 <div class="item-row">✔️ <button class="btn-link" onclick="rentScarecrow(5, 'diamonds', 3)">Арендовать на 5 часов</button> (цена 💎 3 алмаза)</div>
@@ -231,7 +234,7 @@
                 ⚠️ Арендовать Пугало за монеты можно только через 12 часов после окончания предыдущего срока аренды.
             </div>
 
-            <button class="btn-link" onclick="showScreen('farm')">🛒 В магазин / На грядки</button>
+            <button class="btn-link" onclick="showScreen('farm')">🛒 В магазин</button>
         </div>
     </div>
 
@@ -240,30 +243,27 @@
         <div class="nav-item" onclick="showScreen('farm')">🟩 Грядки (4)</div>
         <div class="nav-item">🏛️ Площадь</div>
         <div class="nav-item">🪵 Завалинка *</div>
-        <div class="nav-item" onclick="showScreen('shop')">🏪 Магазин (Пугало)</div>
+        <div class="nav-item" onclick="showScreen('shop')">🏪 Магазин</div>
     </div>
 
 </div>
 
 <script>
-    // Базовое состояние ресурсов
     let coins = 499123;
     let diamonds = 10;
-    let scarecrowEndTime = 0; // Timestamp окончания аренды
+    let scarecrowEndTime = 0;
 
-    // Переключение экранов
-    function showScreen(screen) {
+    function showScreen(screenName) {
         document.getElementById('screen-farm').classList.add('hidden');
         document.getElementById('screen-shop').classList.add('hidden');
-        
-        if (screen === 'farm') {
+
+        if (screenName === 'farm') {
             document.getElementById('screen-farm').classList.remove('hidden');
-        } else if (screen === 'shop') {
+        } else if (screenName === 'shop') {
             document.getElementById('screen-shop').classList.remove('hidden');
         }
     }
 
-    // Аренда пугала
     function rentScarecrow(hours, currency, cost) {
         if (currency === 'diamonds' && diamonds < cost) {
             alert("Недостаточно алмазов!");
@@ -274,53 +274,51 @@
             return;
         }
 
-        // Списание средств
         if (currency === 'diamonds') {
             diamonds -= cost;
             document.getElementById('diamonds-display').innerText = diamonds;
         } else {
             coins -= cost;
-            document.getElementById('coins-display').innerText = coins;
+            document.getElementById('coins-display').innerText = coins.toLocaleString();
         }
 
-        // Добавление времени аренды
         const now = Date.now();
-        const addTimeMs = hours * 3600 * 1000;
+        const addMs = hours * 3600 * 1000;
 
         if (scarecrowEndTime > now) {
-            scarecrowEndTime += addTimeMs;
+            scarecrowEndTime += addMs;
         } else {
-            scarecrowEndTime = now + addTimeMs;
+            scarecrowEndTime = now + addMs;
         }
 
-        alert(`Пугало успешно арендовано на ${hours} ч.!`);
+        alert(`Пугало арендовано на ${hours} ч.!`);
         showScreen('farm');
         updateTimer();
     }
 
-    // Обновление таймера
     function updateTimer() {
         const now = Date.now();
         const diff = scarecrowEndTime - now;
-
         const statusElement = document.getElementById('scarecrow-active-status');
 
         if (diff > 0) {
             statusElement.classList.remove('hidden');
 
-            const totalSeconds = Math.floor(diff / 1000);
-            const hours = Math.floor(totalSeconds / 3600);
-            const minutes = Math.floor((totalSeconds % 3600) / 60);
-            const seconds = totalSeconds % 60;
+            const totalSec = Math.floor(diff / 1000);
+            const hours = Math.floor(totalSec / 3600);
+            const minutes = Math.floor((totalSec % 3600) / 60);
+            const seconds = totalSec % 60;
 
-            document.getElementById('scarecrow-timer').innerText = 
-                `${hours} часов ${minutes} минут ${seconds} секунд`;
+            let timeStr = "";
+            if (hours > 0) timeStr += `${hours} часов `;
+            timeStr += `${minutes} минут ${seconds} секунд`;
+
+            document.getElementById('scarecrow-timer').innerText = timeStr;
         } else {
             statusElement.classList.add('hidden');
         }
     }
 
-    // Запуск таймера каждую секунду
     setInterval(updateTimer, 1000);
 </script>
 
